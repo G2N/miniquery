@@ -3,9 +3,14 @@
 var $ = (function(document) {
     'use strict';
 
-    var miniQuery = function(s) {
-        // Enforce a string as default just in case
-        var r = document.querySelectorAll(s || ''),
+    var miniQuery = function(selector, el) {
+        // Enforce the second argument to be a single HTMLElement
+        if(el && !(el instanceof HTMLElement)) {
+            return [];
+        }
+        var parent = el || document,
+            // Enforce a string as default just in case
+            r = parent.querySelectorAll(selector || ''),
             len = r.length;
 
         // if only one node is found, return it
