@@ -11,6 +11,7 @@ Returns a NodeList when more than one result is found. Returns an Element when o
 ## Browser Support
 * IE 8+ *
 * Everything else :)
+
 Note that IE 8 supports only CSS 2.1 selectors plus attribute selectors (`[attr^=val]`, `[attr^=val]`, `[attr^=val]`) and general siblings selector `element1~element2`
 
 # License
