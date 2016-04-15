@@ -8,6 +8,14 @@ var links = $('.container li');
 
 Returns a NodeList when more than one result is found. Returns an Element when only one element is found.
 
+### Querying inside of an element
+```js
+var list = $('#mylist'),
+    links = $('li', list);
+```
+
+This is equivalent to `list.querySelectorAll('li')`.
+
 ## Browser Support
 * IE 8+ *
 * Everything else :)
