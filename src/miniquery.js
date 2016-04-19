@@ -112,6 +112,63 @@ var $ = (function(document) {
         });
     };
     
+    /********************************
+     * HTML insertion API
+     *******************************/
+    
+    // html
+    Node.prototype.html = function(value) {
+        this.innerHTML = value;
+    };
+    NodeList.prototype.html = function(value) {
+        this.forEach(function(item) {
+            item.html(value);
+        });
+    };
+    
+    // prepend
+    Node.prototype.prepend = function(value) {
+        // Can't use insertAdjacentHTML because it throws an error in IE 9- on some table elements
+        // http://caniuse.com/#feat=insertadjacenthtml
+        this.innerHTML = value + this.innerHTML;
+    };
+    NodeList.prototype.prepend = function(value) {
+        this.forEach(function(item) {
+            item.prepend(value);
+        });
+    };
+    
+    // append
+    Node.prototype.append = function(value) {
+        // Can't use insertAdjacentHTML because it throws an error in IE 9- on some table elements
+        // http://caniuse.com/#feat=insertadjacenthtml
+        this.innerHTML = this.innerHTML + value;
+    };
+    NodeList.prototype.append = function(value) {
+        this.forEach(function(item) {
+            item.append(value);
+        });
+    };
+    
+    // before
+    Node.prototype.before = function(value) {
+        this.outerHTML = value + this.outerHTML;
+    };
+    NodeList.prototype.before = function(value) {
+        this.forEach(function(item) {
+            item.before(value);
+        });
+    };
+    
+    // after
+    Node.prototype.after = function(value) {
+        this.outerHTML = this.outerHTML + value;
+    };
+    NodeList.prototype.after = function(value) {
+        this.forEach(function(item) {
+            item.after(value);
+        });
+    };
 
     return miniQuery;
 })(document);
