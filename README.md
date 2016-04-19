@@ -6,7 +6,7 @@ A minimalist JavaScript Library for simple DOM queries. It's a simple wrapper fo
 var links = $('.container li');
 ```
 
-Returns a NodeList when more than one result is found. Returns an Element when only one element is found.
+Returns a `NodeList` when more than one result is found. Returns a `Node` when only one element is found.
 
 ### Querying inside of an element
 ```js
@@ -16,7 +16,7 @@ var list = $('#mylist'),
 
 This is equivalent to `list.querySelectorAll('li')`. (Because `$('#mylist')` returns a single element).
 
-### Class Maniputlation
+### Class Manipulation
 Class manipulation methods work both on `Node` and `NodeList` and take a single class as a parameter.
 ```js
 var items = $('li');
@@ -32,6 +32,19 @@ $('#someid').hasClass('someclass');
 ```
 
 **Warning** the `addClass` method does not work on `NodeList` yet as I'm not sure what it should return in this particular case.
+
+### Attribute manipulation
+When used on `NodeList`, get methods return an array of all the values of each results' attribute (they return a string when used on a `Node`).
+```js
+items.attr('href'); // returns an array comprised of all [href] attributes
+items.attr('rel', 'nofollow');
+items.removeAttr('rel');
+```
+Manipulating properties like `checked` or `selected` should not be done with `$(input).attr` instead, you can use the `$(input).prop` method.
+```js
+items.prop('checked'); // returns an array comprised of all checked properties
+items.prop(checked, true);
+```
 
 ## Browser Support
 * IE 8+ *
