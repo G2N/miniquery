@@ -14,7 +14,7 @@ var list = $('#mylist'),
     links = $('li', list);
 ```
 
-This is equivalent to `list.querySelectorAll('li')`.
+This is equivalent to `list.querySelectorAll('li')`. (Because `$('#mylist')` returns a single element).
 
 ## Browser Support
 * IE 8+ *
