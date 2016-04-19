@@ -33,6 +33,24 @@ $('#someid').hasClass('someclass');
 
 **Warning** the `addClass` method does not work on `NodeList` yet as I'm not sure what it should return in this particular case.
 
+### HTML insertion
+```js
+$('li').html('some text');
+$('li').prepend('some text'); // After the start of each Node
+$('li').append('some text'); // Before the end of each Node
+$('li').before('some text'); // Before the start of each Node
+$('li').after('some text'); // After the end of each Node
+```
+```html
+<!-- before -->
+<p>
+<!-- prepend -->
+    foo
+<!-- append -->
+</p>
+<!-- after -->
+```
+
 ### Attribute manipulation
 When used on `NodeList`, get methods return an array of all the values of each results' attribute (they return a string when used on a `Node`).
 ```js
