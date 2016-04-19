@@ -34,10 +34,17 @@ $('#someid').hasClass('someclass');
 **Warning** the `addClass` method does not work on `NodeList` yet as I'm not sure what it should return in this particular case.
 
 ## Browser Support
-* IE 8+ *
-* Everything else :)
+I won't directly include any polyfill in this library, feel free to use the ones listed below. So here's the browser support list with aboslutely no polyfill.
+* IE 10+ *
+* Edge 12+
+* FF 3.6+
+* Chrome 8+
+* Safari 5.1+
+* Opera 11.5+
+* Android 3+
 
-Note that IE 8 supports only CSS 2.1 selectors plus attribute selectors (`[attr^=val]`, `[attr^=val]`, `[attr^=val]`) and general siblings selector `element1~element2`
+Note that IE 8 supports only CSS 2.1 selectors plus attribute selectors (`[attr^=val]`, `[attr^=val]`, `[attr^=val]`) and general siblings selector `element1~element2`.
+If you need support for older browsers, you can use the [classList polyfill](https://github.com/eligrey/classList.js) (see the full table on [Can I Use](http://caniuse.com/#feat=classlist)).
 
 # License
 miniquery is license under the [WTFPL](http://www.wtfpl.net/about/ "Do What The Fuck You Want To Public License")
