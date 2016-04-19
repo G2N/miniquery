@@ -44,6 +44,7 @@ I won't directly include any polyfill in this library, feel free to use the ones
 * Android 3+
 
 Note that IE 8 supports only CSS 2.1 selectors plus attribute selectors (`[attr^=val]`, `[attr^=val]`, `[attr^=val]`) and general siblings selector `element1~element2`.
+
 If you need support for older browsers, you can use the [classList polyfill](https://github.com/eligrey/classList.js) (see the full table on [Can I Use](http://caniuse.com/#feat=classlist)).
 
 # License
