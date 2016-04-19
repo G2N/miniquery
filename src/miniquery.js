@@ -18,9 +18,11 @@ var $ = (function(document) {
         return len === 1 ? r[0] : r;
     };
     
-    /**
-     * addClass Methods
-     */
+    /********************************
+     * Class manipulation API
+     *******************************/
+    
+    // addClass
     Node.prototype.addClass = function(name) {
         this.classList.add(name);
     };
@@ -30,9 +32,7 @@ var $ = (function(document) {
         });
     };
     
-    /**
-     * removeClass Methods
-     */
+    // removeClass
     Node.prototype.removeClass = function(name) {
         this.classList.remove(name);
     };
@@ -42,9 +42,7 @@ var $ = (function(document) {
         });
     };
     
-    /**
-     * toggleClass Methods
-     */
+    // toggleClass
     Node.prototype.toggleClass = function(name) {
         this.classList.toggle(name);
     };
@@ -54,8 +52,64 @@ var $ = (function(document) {
         });
     };
     
+    // hasClass
     Node.prototype.hasClass = function(name) {
         return this.classList.contains(name);
+    };
+    
+    
+    /********************************
+     * Attribute manipulation API
+     *******************************/
+    
+    // get / set attribute
+    Node.prototype.attr = function(name, value) {
+        if(!value) {
+            return this.getAttribute(name);
+        }
+        this.setAttribute(name, value);
+    };
+    NodeList.prototype.attr = function(name, value) {
+        var arr = [];
+        if(!value) {
+            this.forEach(function(item) {
+                arr.push(item.attr(name, value));
+            });
+            return arr;
+        }
+        this.forEach(function(item) {
+            item.attr(name, value);
+        });
+    };
+    
+    // remove attribute
+    Node.prototype.removeAttr = function(name) {
+        this.removeAttribute(name);
+    };
+    NodeList.prototype.removeAttr = function(name) {
+        this.forEach(function(item) {
+            item.removeAttr(name);
+        });
+    };
+    
+    // get / set property
+    Node.prototype.prop = function(name, value) {
+        if(value === undefined) {
+            return this[name];
+        }
+        this[name] = value;
+    };
+    NodeList.prototype.prop = function(name, value) {
+        var arr = [];
+        if(value === undefined) {
+            this.forEach(function(item) {
+                arr.push(item.prop(name));
+            });
+            return arr;
+        }
+        this.forEach(function(item) {
+            item.prop(name, value);
+        });
     };
     
 
