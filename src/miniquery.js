@@ -18,6 +18,12 @@ var $ = (function(document) {
         return len === 1 ? r[0] : r;
     };
     
+    function applyToChildren(nodeList, method, value) {
+        nodeList.forEach(function(item) {
+            Node.prototype[method].call(item, value);
+        });
+    }
+    
     /********************************
      * Class manipulation API
      *******************************/
@@ -27,9 +33,7 @@ var $ = (function(document) {
         this.classList.add(name);
     };
     NodeList.prototype.addClass = function(name) {
-        this.forEach(function(item) {
-            item.addClass(name);
-        });
+        applyToChildren(this, 'addClass', name);
     };
     
     // removeClass
@@ -37,9 +41,7 @@ var $ = (function(document) {
         this.classList.remove(name);
     };
     NodeList.prototype.removeClass = function(name) {
-        this.forEach(function(item) {
-            item.removeClass(name);
-        });
+        applyToChildren(this, 'removeClass', name);
     };
     
     // toggleClass
@@ -47,9 +49,7 @@ var $ = (function(document) {
         this.classList.toggle(name);
     };
     NodeList.prototype.toggleClass = function(name) {
-        this.forEach(function(item) {
-            item.toggleClass(name);
-        });
+        applyToChildren(this, 'toggleClass', name);
     };
     
     // hasClass
@@ -64,16 +64,16 @@ var $ = (function(document) {
     
     // get / set attribute
     Node.prototype.attr = function(name, value) {
-        if(!value) {
+        if(value === undefined) {
             return this.getAttribute(name);
         }
         this.setAttribute(name, value);
     };
     NodeList.prototype.attr = function(name, value) {
         var arr = [];
-        if(!value) {
+        if(value === undefined) {
             this.forEach(function(item) {
-                arr.push(item.attr(name, value));
+                arr.push(item.attr(name));
             });
             return arr;
         }
@@ -87,9 +87,7 @@ var $ = (function(document) {
         this.removeAttribute(name);
     };
     NodeList.prototype.removeAttr = function(name) {
-        this.forEach(function(item) {
-            item.removeAttr(name);
-        });
+        applyToChildren(this, 'removeAttr', name);
     };
     
     // get / set property
@@ -121,9 +119,7 @@ var $ = (function(document) {
         this.innerHTML = value;
     };
     NodeList.prototype.html = function(value) {
-        this.forEach(function(item) {
-            item.html(value);
-        });
+        applyToChildren(this, 'html', value);
     };
     
     // prepend
@@ -133,9 +129,7 @@ var $ = (function(document) {
         this.innerHTML = value + this.innerHTML;
     };
     NodeList.prototype.prepend = function(value) {
-        this.forEach(function(item) {
-            item.prepend(value);
-        });
+        applyToChildren(this, 'prepend', value);
     };
     
     // append
@@ -145,9 +139,7 @@ var $ = (function(document) {
         this.innerHTML = this.innerHTML + value;
     };
     NodeList.prototype.append = function(value) {
-        this.forEach(function(item) {
-            item.append(value);
-        });
+        applyToChildren(this, 'append', value);
     };
     
     // before
@@ -155,9 +147,7 @@ var $ = (function(document) {
         this.outerHTML = value + this.outerHTML;
     };
     NodeList.prototype.before = function(value) {
-        this.forEach(function(item) {
-            item.before(value);
-        });
+        applyToChildren(this, 'before', value);
     };
     
     // after
@@ -165,9 +155,7 @@ var $ = (function(document) {
         this.outerHTML = this.outerHTML + value;
     };
     NodeList.prototype.after = function(value) {
-        this.forEach(function(item) {
-            item.after(value);
-        });
+        applyToChildren(this, 'after', value);
     };
 
     return miniQuery;
